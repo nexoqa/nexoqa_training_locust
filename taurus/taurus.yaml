@@ -1,11 +1,32 @@
+cli-aliases:
+  small:
+    settings:
+      env:
+        USERS: 10
+        RAMP_UP: 10m
+        ITERATIONS: 1000
+  large:
+    settings:
+      env:
+        USERS: 100
+        RAMP_UP: 1m
+        ITERATIONS: 3000
+
+settings:
+  artifacts-dir: ./artifacts/%Y-%m-%d_%H-%M-%S.%f
+
 execution:
   - executor: locust
-    concurrency: 10
-    ramp-up: 1m
-    iterations: 1000
+    concurrency: ${USERS}
+    ramp-up: ${RAMP_UP}
+    iterations: ${ITERATIONS}
     scenario: example
 
 scenarios:
   example:
     default-address: http://blazedemo.com
     script: locust_example.py
+
+reporting:
+  - module: console
+  # - module: blazemeter
