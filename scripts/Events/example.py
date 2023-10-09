@@ -22,14 +22,13 @@ def sla(environment, **kwargs):
 
 
 class LoadTest(SequentialTaskSet):
-
     @task
     def home_page(self):
         self.client.get("/songs", name="SuccessRequests")
-        self.client.get("/song", name="FailRequests")
+        # self.client.get("/song", name="FailRequests")
 
 
 class TestScenario(HttpUser):
-    host="http://localhost:8081"
+    host = "http://localhost:8081"
     wait_time = constant(1)
     tasks = [LoadTest]

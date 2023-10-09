@@ -3,7 +3,6 @@ import random
 
 
 class SequentialTaskSetExample(SequentialTaskSet):
-
     @task
     def get(self):
         self.client.get("/songs")
@@ -11,10 +10,11 @@ class SequentialTaskSetExample(SequentialTaskSet):
 
     @task
     def get_random_songs(self):
-        songs = [1,2,3,4,5]
-        random_url = "/songs/" + str(random.choice(songs))
+        songs = [1, 2, 3, 4, 5]
+        id = str(random.choice(songs))
+        random_url = "/songs/" + id
         res = self.client.get(random_url)
-        print("Random songs")
+        print(f"Random songs {id}")
 
 
 class MyLoadTest(HttpUser):
