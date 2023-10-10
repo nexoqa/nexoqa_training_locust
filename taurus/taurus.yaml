@@ -3,7 +3,7 @@ cli-aliases:
     settings:
       env:
         USERS: 10
-        RAMP_UP: 10m
+        RAMP_UP: 10s
         ITERATIONS: 1000
   large:
     settings:
